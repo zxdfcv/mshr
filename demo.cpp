@@ -17,6 +17,8 @@ int main() {
     while (fscanf(stdin, "%d", &type) != EOF) {
         long long addr;
         int merge;
+        char mf[17];
+        std::string mf_s;
         //fscanf(stdin, "%d", &type); //不能重复读入
         switch (type) {
             case 1:
@@ -27,12 +29,14 @@ int main() {
                 std::cout << mshr_test->mshr_full() << std::endl;
                 break;
             case 3:
-                fscanf(stdin, "%lld", &addr);
-                mshr_test->mshr_add(addr);
+                fscanf(stdin, "%lld %s", &addr, mf); //添加merge
+                mf_s = mf;
+                mshr_test->mshr_add(addr, mf_s);
                 break;
             case 4:
-                fscanf(stdin, "%lld%d", &addr, &merge);
-                mshr_test->mshr_delete(addr, merge);
+                fscanf(stdin, "%lld %s", &addr, mf);
+                mf_s = mf;
+                mshr_test->mshr_delete(addr, mf_s);
                 break;
             case 5:
                 mshr_test->mshr_print();
